@@ -14,8 +14,10 @@ auth = v3.Password(auth_url= auth_url,
                    project_id ='5196c9dd32564e50a57bfa1931dbb4c3',
                    user_domain_name = user_domain_name)
 sess = session.Session(auth=auth)
-keystone = client.Client(session=sess)
-keystone.projects.list()
+keystone = client.Client(session=sess, include_metadata=True)
+resp = keystone.projects.list()
+
+print(resp.data)
 
 
 
